@@ -1,3 +1,4 @@
+
 @import "tailwindcss" source(none);
 @source "../src";
 @import "tw-animate-css";
@@ -7,9 +8,10 @@
 @theme inline {
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
-  --radius-lg: var(--radius);
+  --radius-lg: calc(var(--radius) - 1px);
   --radius-xl: calc(var(--radius) + 4px);
   --radius-2xl: calc(var(--radius) + 8px);
+
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
@@ -33,6 +35,7 @@
   --color-pearl: var(--pearl);
   --color-blush: var(--blush);
   --color-rose: var(--rose);
+
   --font-script: "Pinyon Script", cursive;
   --font-serif: "Cormorant Garamond", Georgia, serif;
   --font-sans: "Jost", system-ui, sans-serif;
@@ -40,47 +43,96 @@
 
 :root {
   --radius: 0.75rem;
+
   --background: oklch(0.975 0.012 20);
   --foreground: oklch(0.32 0.04 0);
+
   --card: oklch(0.99 0.006 60);
   --card-foreground: oklch(0.32 0.04 0);
+
   --popover: oklch(0.99 0.006 60);
   --popover-foreground: oklch(0.32 0.04 0);
+
   --primary: oklch(0.62 0.11 5);
   --primary-foreground: oklch(0.99 0.005 60);
+
   --secondary: oklch(0.94 0.03 10);
   --secondary-foreground: oklch(0.35 0.05 0);
+
   --muted: oklch(0.95 0.015 20);
   --muted-foreground: oklch(0.5 0.03 0);
+
   --accent: oklch(0.9 0.05 5);
   --accent-foreground: oklch(0.3 0.05 0);
+
   --destructive: oklch(0.577 0.245 27.325);
   --destructive-foreground: oklch(0.98 0 0);
+
   --border: oklch(0.86 0.02 10);
   --input: oklch(0.88 0.02 10);
   --ring: oklch(0.62 0.11 5);
+
   --silver: oklch(0.76 0.01 260);
   --pearl: oklch(0.985 0.008 70);
   --blush: oklch(0.9 0.05 5);
   --rose: oklch(0.72 0.1 5);
-  --gradient-silver: linear-gradient(135deg, oklch(0.9 0.005 260), oklch(0.68 0.012 260) 45%, oklch(0.95 0.004 260) 60%, oklch(0.72 0.01 260));
-  --gradient-envelope: linear-gradient(160deg, oklch(0.97 0.02 15), oklch(0.9 0.05 8));
-  --gradient-paper: linear-gradient(180deg, var(--pearl), oklch(0.96 0.02 25));
-  --shadow-soft: 0 20px 50px -20px color-mix(in oklab, var(--primary) 45%, transparent);
-  --shadow-card: 0 30px 60px -25px oklch(0.4 0.06 0 / 0.45);
+
+  --gradient-silver: linear-gradient(
+    135deg,
+    oklch(0.9 0.005 260),
+    oklch(0.68 0.012 260) 45%,
+    oklch(0.95 0.004 260) 60%,
+    oklch(0.72 0.01 260)
+  );
+
+  --gradient-envelope: linear-gradient(
+    160deg,
+    oklch(0.97 0.02 15),
+    oklch(0.9 0.05 8)
+  );
+
+  --gradient-paper: linear-gradient(
+    180deg,
+    var(--pearl),
+    oklch(0.96 0.02 25)
+  );
+
+  --shadow-soft: 0 20px 50px -20px
+    color-mix(in oklab, var(--primary) 45%, transparent);
+
+  --shadow-card: 0 30px 60px -25px
+    oklch(0.4 0.06 0 / 0.45);
 }
 
+/* ========================================
+   ESTILOS BASE
+======================================== */
+
 @layer base {
-  * { border-color: var(--color-border); }
-  html { scroll-behavior: smooth; }
+  * {
+    border-color: var(--color-border);
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
   body {
     background-color: var(--color-background);
     color: var(--color-foreground);
     font-family: var(--font-sans);
     overflow-x: hidden;
   }
-  img { max-width: 100%; height: auto; }
+
+  img {
+    max-width: 100%;
+    height: auto;
+  }
 }
+
+/* ========================================
+   UTILIDADES PERSONALIZADAS
+======================================== */
 
 @utility text-silver-shine {
   background: var(--gradient-silver);
@@ -88,10 +140,23 @@
   background-clip: text;
   color: transparent;
 }
-@utility bg-envelope { background: var(--gradient-envelope); }
-@utility bg-paper { background: var(--gradient-paper); }
-@utility shadow-soft { box-shadow: var(--shadow-soft); }
-@utility shadow-card { box-shadow: var(--shadow-card); }
+
+@utility bg-envelope {
+  background: var(--gradient-envelope);
+}
+
+@utility bg-paper {
+  background: var(--gradient-paper);
+}
+
+@utility shadow-soft {
+  box-shadow: var(--shadow-soft);
+}
+
+@utility shadow-card {
+  box-shadow: var(--shadow-card);
+}
+
 @utility border-silver {
   border: 1.5px solid transparent;
   background-image: var(--gradient-paper), var(--gradient-silver);
@@ -99,44 +164,197 @@
   background-clip: padding-box, border-box;
 }
 
-/* Envelope */
-.env-scene { perspective: 1400px; }
+/* ========================================
+   SOBRE Y CARTA
+======================================== */
+
+.env-scene {
+  perspective: 1400px;
+  transform-style: preserve-3d;
+}
+
+/* Solapa superior */
 .env-flap {
   transform-origin: top center;
-  transition: transform 0.9s cubic-bezier(0.6, 0, 0.3, 1);
+  transform-style: preserve-3d;
   backface-visibility: hidden;
+
   clip-path: polygon(0 0, 100% 0, 50% 62%);
+
+  transition:
+    transform 1.15s cubic-bezier(0.22, 0.75, 0.25, 1);
 }
-.is-open .env-flap { transform: rotateX(180deg); }
+
+/* Abrir la solapa */
+.env-wrap.is-open .env-flap {
+  transform: rotateX(180deg);
+}
+
+/* Carta antes de abrir */
 .env-letter {
-  transition: transform 1.1s cubic-bezier(0.3, 0.8, 0.3, 1) 0.7s;
-}
-.is-open .env-letter { transform: translateY(-55%); }
-.env-wrap { transition: opacity 0.8s ease 1.9s, transform 0.8s ease 1.9s; }
-.is-open .env-wrap { opacity: 0; transform: scale(1.12); pointer-events: none; }
+  opacity: 0;
+  transform: translateY(8%) scale(0.97);
 
-@keyframes float-y { 0%,100% { transform: translateY(0) } 50% { transform: translateY(-8px) } }
-@keyframes twinkle { 0%,100% { opacity: 0.15; transform: scale(0.6) } 50% { opacity: 1; transform: scale(1) } }
+  transition:
+    opacity 0.6s ease 0.35s,
+    transform 1.4s cubic-bezier(0.16, 1, 0.3, 1) 0.35s;
+
+  will-change: transform, opacity;
+}
+
+/* Carta que sale del sobre */
+.env-wrap.is-open .env-letter {
+  opacity: 1;
+  transform: translateY(-55%) scale(1);
+}
+
+/* Contenedor del sobre */
+.env-wrap {
+  opacity: 1;
+  transform: scale(1);
+
+  transition:
+    opacity 0.9s ease 3.4s,
+    transform 1s cubic-bezier(0.22, 1, 0.36, 1) 3.4s;
+}
+
+/* Desvanecer el sobre al finalizar la animación */
+.env-wrap.is-open {
+  opacity: 0;
+  transform: scale(1.04);
+  pointer-events: none;
+}
+
+/* ========================================
+   ANIMACIONES DECORATIVAS
+======================================== */
+
+@keyframes float-y {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+@keyframes twinkle {
+  0%,
+  100% {
+    opacity: 0.15;
+    transform: scale(0.6);
+  }
+
+  50% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
 @keyframes petal-fall {
-  0% { transform: translate3d(0,-10vh,0) rotate(0); opacity: 0 }
-  10% { opacity: 0.9 }
-  100% { transform: translate3d(var(--dx, 40px), 110vh, 0) rotate(540deg); opacity: 0 }
+  0% {
+    transform: translate3d(0, -10vh, 0) rotate(0);
+    opacity: 0;
+  }
+
+  10% {
+    opacity: 0.9;
+  }
+
+  100% {
+    transform: translate3d(var(--dx, 40px), 110vh, 0) rotate(540deg);
+    opacity: 0;
+  }
 }
-@keyframes rise-in { from { opacity: 0; transform: translateY(24px) } to { opacity: 1; transform: none } }
-@keyframes pulse-hint { 0%,100% { opacity: 0.55 } 50% { opacity: 1 } }
 
-.animate-float { animation: float-y 5s ease-in-out infinite; }
-.animate-twinkle { animation: twinkle 3s ease-in-out infinite; }
-.animate-petal { animation: petal-fall linear forwards; }
-.animate-rise { animation: rise-in 1s ease both; }
-.animate-hint { animation: pulse-hint 2.4s ease-in-out infinite; }
+@keyframes rise-in {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
 
-.reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.9s ease, transform 0.9s ease; }
-.reveal.in { opacity: 1; transform: none; }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes pulse-hint {
+  0%,
+  100% {
+    opacity: 0.55;
+  }
+
+  50% {
+    opacity: 1;
+  }
+}
+
+/* Aplicación de animaciones */
+.animate-float {
+  animation: float-y 5s ease-in-out infinite;
+}
+
+.animate-twinkle {
+  animation: twinkle 3s ease-in-out infinite;
+}
+
+.animate-petal {
+  animation: petal-fall linear forwards;
+}
+
+.animate-rise {
+  animation: rise-in 1s ease both;
+}
+
+.animate-hint {
+  animation: pulse-hint 2.4s ease-in-out infinite;
+}
+
+/* ========================================
+   APARICIÓN DE SECCIONES
+======================================== */
+
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+
+  transition:
+    opacity 0.9s ease,
+    transform 0.9s ease;
+}
+
+.reveal.in {
+  opacity: 1;
+  transform: none;
+}
+
+/* ========================================
+   ACCESIBILIDAD: MOVIMIENTO REDUCIDO
+======================================== */
 
 @media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.3s !important; transition-delay: 0s !important; }
-  .is-open .env-flap, .is-open .env-letter { transform: none; }
-  .reveal { transform: none; }
-  html { scroll-behavior: auto; }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.3s !important;
+    transition-delay: 0s !important;
+  }
+
+  .env-wrap.is-open .env-flap,
+  .env-wrap.is-open .env-letter {
+    transform: none;
+  }
+
+  .reveal {
+    transform: none;
+  }
+
+  html {
+    scroll-behavior: auto;
+  }
 }

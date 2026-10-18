@@ -62,41 +62,52 @@ export function Ornament({ className = "" }: { className?: string }) {
   );
 }
 
-export function Reveal({ children, className = "" }: { children: ReactNode; className?: string }) {
+
+export function Reveal({
+  children,
+  className = "",
+}: {
+  children: ReactNode;
+  className?: string;
+}) {
   const ref = useRef<HTMLDivElement>(null);
   const [inView, setInView] = useState(false);
+
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
-    const io = new IntersectionObserver(([e]) => e?.isIntersecting && (setInView(true), io.disconnect()), { threshold: 0.15 });
+
+    const io = new IntersectionObserver(
+      ([e]) => {
+        if (e?.isIntersecting) {
+          setInView(true);
+          io.disconnect();
+        }
+      },
+      { threshold: 0.15 },
+    );
+
     io.observe(el);
     return () => io.disconnect();
   }, []);
-  return <div ref={ref} className={`reveal ${inView ? "in" : ""} ${className}`}>{children}</div>;
+
+  return (
+    <div ref={ref} className={`reveal ${inView ? "in" : ""} ${className}`}>
+      {children}
+    </div>
+  );
 }
 
-/** Aurora: carga public/assets/karen-xv/images/aurora.png; si no existe, muestra un espacio provisional. */
 export function Aurora({ className = "" }: { className?: string }) {
-  const [missing, setMissing] = useState(false);
-  useEffect(() => {
-    const img = new Image();
-    img.onerror = () => setMissing(true);
-    img.src = assets.aurora;
-  }, []);
-  if (missing) {
-    return (
-      <div className={`flex aspect-[2/3] flex-col items-center justify-center rounded-[50%_50%_1rem_1rem] border border-dashed border-silver bg-pearl/60 p-4 text-center ${className}`}>
-        <span className="font-script text-3xl text-primary">Aurora</span>
-        <span className="mt-1 text-[11px] uppercase tracking-widest text-muted-foreground">Imagen provisional</span>
-      </div>
-    );
-  }
   return (
     <img
       src={assets.aurora}
       alt="Princesa Aurora"
-      onError={() => setMissing(true)}
+      onError={(e) => {
+        e.currentTarget.style.display = "none";
+      }}
       className={`object-contain drop-shadow-[0_10px_25px_oklch(0.6_0.1_5/0.35)] ${className}`}
     />
   );
 }
+
