@@ -25,7 +25,7 @@ export function Envelope({ open, onOpen }: { open: boolean; onOpen: () => void }
               <span className="font-script text-4xl text-primary">Karen</span>
             </div>
             {/* envelope body */}
-            <div className="absolute inset-0 z-[15] rounded-lg bg-envelope shadow-card" />
+            <div className="absolute inset-0 z-0 rounded-lg bg-envelope brightness-90 shadow-card" />
             <div className="absolute inset-0 z-20 rounded-lg bg-envelope shadow-card" style={{ clipPath: "polygon(0 30%, 50% 62%, 100% 30%, 100% 100%, 0 100%)" }} />
             <div className="absolute inset-0 z-20 flex items-end justify-center pb-[8%]">
               <div className="text-center">
