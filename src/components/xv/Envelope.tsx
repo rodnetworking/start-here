@@ -1,4 +1,4 @@
-import { Aurora, Sparkles } from "./Decor";
+import { Sparkles } from "./Decor";
 
 export function Envelope({ open, onOpen }: { open: boolean; onOpen: () => void }) {
   return (
@@ -6,7 +6,7 @@ export function Envelope({ open, onOpen }: { open: boolean; onOpen: () => void }
       <div className="absolute inset-0 bg-background/70 backdrop-blur-[2px]" />
       <Sparkles />
 
-      <div className="relative z-10 flex w-full max-w-4xl flex-col items-center gap-6 md:flex-row md:justify-center md:gap-10">
+      <div className="relative z-10 flex w-full flex-col items-center justify-center">
         <div className="flex flex-col items-center">
           <p className="animate-rise mb-2 text-center font-serif text-base italic text-muted-foreground sm:text-lg">
             “Un sueño de cuento de hadas está por comenzar…”
@@ -46,8 +46,6 @@ export function Envelope({ open, onOpen }: { open: boolean; onOpen: () => void }
             Toca la carta para abrir tu invitación
           </p>
         </div>
-
-        <Aurora className="h-auto w-32 sm:w-40 md:w-56" />
       </div>
     </div>
   );
