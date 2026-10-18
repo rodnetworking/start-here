@@ -1,24 +1,44 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { useRef, useState } from "react";
+import castle from "@/assets/castle.jpg";
+import { Envelope } from "@/components/xv/Envelope";
+import { Invitation } from "@/components/xv/Invitation";
+import { Music, type MusicHandle } from "@/components/xv/Music";
+import { Petals } from "@/components/xv/Decor";
 
-// No head() here: the home route inherits title/description/og/twitter from
-// __root.tsx, and ships no og:image so serve-time hosting can inject the
-// project's social preview (explicit og:image or latest screenshot).
 export const Route = createFileRoute("/")({
+  head: () => ({
+    meta: [
+      { title: "Mis XV años · Karen Michell López Juárez" },
+      { name: "description", content: "Invitación a los XV años de Karen Michell López Juárez. Sábado 9 de enero de 2027, Zapopan, Jalisco." },
+      { property: "og:title", content: "Mis XV años · Karen Michell López Juárez" },
+      { property: "og:description", content: "Un sueño de cuento de hadas está por comenzar. 9 de enero de 2027." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
+    ],
+  }),
   component: Index,
 });
 
-// IMPORTANT: Replace this placeholder. See ./README.md for routing conventions.
 function Index() {
+  const [open, setOpen] = useState(false);
+  const [gone, setGone] = useState(false);
+  const music = useRef<MusicHandle>(null);
+
+  const handleOpen = () => {
+    if (open) return;
+    setOpen(true);
+    music.current?.start();
+    setTimeout(() => setGone(true), 2800);
+  };
+
   return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
+    <div className="relative min-h-svh">
+      <img src={castle} alt="" aria-hidden width={1024} height={1536} className="fixed inset-0 -z-10 h-full w-full object-cover opacity-60" />
+      {open && <Invitation />}
+      {!gone && <Envelope open={open} onOpen={handleOpen} />}
+      {open && !gone && <Petals />}
+      <Music ref={music} visible={open} />
     </div>
   );
 }
