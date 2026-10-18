@@ -78,6 +78,11 @@ export function Reveal({ children, className = "" }: { children: ReactNode; clas
 /** Aurora: carga public/assets/karen-xv/images/aurora.png; si no existe, muestra un espacio provisional. */
 export function Aurora({ className = "" }: { className?: string }) {
   const [missing, setMissing] = useState(false);
+  useEffect(() => {
+    const img = new Image();
+    img.onerror = () => setMissing(true);
+    img.src = assets.aurora;
+  }, []);
   if (missing) {
     return (
       <div className={`flex aspect-[2/3] flex-col items-center justify-center rounded-[50%_50%_1rem_1rem] border border-dashed border-silver bg-pearl/60 p-4 text-center ${className}`}>

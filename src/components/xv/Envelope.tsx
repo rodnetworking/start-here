@@ -20,11 +20,12 @@ export function Envelope({ open, onOpen }: { open: boolean; onOpen: () => void }
             className="env-scene animate-float relative mt-14 aspect-[3/2] w-[min(86vw,420px)] cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-8 focus-visible:outline-ring"
           >
             {/* letter inside */}
-            <div className="env-letter absolute inset-x-[6%] top-[6%] bottom-[6%] z-10 flex flex-col items-center justify-center rounded-md bg-paper p-3 shadow-card">
+            <div className={`env-letter absolute inset-x-[6%] top-[6%] bottom-[6%] z-10 transition-opacity ${open ? "opacity-100" : "opacity-0"} flex flex-col items-center justify-center rounded-md bg-paper p-3 shadow-card`}>
               <span className="font-serif text-xs uppercase tracking-[0.35em] text-muted-foreground">Mis XV años</span>
               <span className="font-script text-4xl text-primary">Karen</span>
             </div>
             {/* envelope body */}
+            <div className="absolute inset-0 z-[15] rounded-lg bg-envelope shadow-card" />
             <div className="absolute inset-0 z-20 rounded-lg bg-envelope shadow-card" style={{ clipPath: "polygon(0 30%, 50% 62%, 100% 30%, 100% 100%, 0 100%)" }} />
             <div className="absolute inset-0 z-20 flex items-end justify-center pb-[8%]">
               <div className="text-center">
