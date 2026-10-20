@@ -82,7 +82,7 @@ export const Music = forwardRef<MusicHandle, { visible: boolean }>(
               aria-label={
                 playing ? "Pausar música" : "Reproducir música"
               }
-              className="relative grid size-14 place-items-center rounded-full bg-primary text-primary-foreground shadow-soft transition-transform active:scale-95 disabled:opacity-50"
+              className="btn-ornate btn-ornate-solid relative size-14 !px-0 disabled:opacity-50"
             >
               {playing ? (
                 <Pause className="size-5" />
