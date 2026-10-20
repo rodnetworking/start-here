@@ -47,7 +47,7 @@ export function Invitation() {
           </div>
         </Reveal>
 
-        <PhotoFrame src={assets.photos[0]} variant="rise" />
+        <PhotoFrame src={assets.photos[0]!} variant="rise" />
 
         <Section title="Con la bendición de">
           <div className="grid gap-8 text-center sm:grid-cols-2">
@@ -64,7 +64,7 @@ export function Invitation() {
           </div>
         </Section>
 
-        <PhotoFrame src={assets.photos[1]} variant="side" />
+        <PhotoFrame src={assets.photos[1]!} variant="side" />
 
         <Section title="Faltan">
           <Countdown />
@@ -87,8 +87,8 @@ export function Invitation() {
           </div>
         </Section>
 
-        <PhotoFrame src={assets.photos[2]} variant="curtain" />
-        <PhotoFrame src={assets.photos[3]} variant="grow" />
+        <PhotoFrame src={assets.photos[2]!} variant="curtain" />
+        <PhotoFrame src={assets.photos[3]!} variant="grow" />
 
         <Section title="Código de vestimenta" icon={<Shirt className="size-7" />}>
           <div className="text-center">
@@ -106,7 +106,7 @@ export function Invitation() {
           </p>
         </Section>
 
-        <PhotoFrame src={assets.photos[4]} variant="hero" caption="Karen Michell" />
+        <PhotoFrame src={assets.photos[4]!} variant="hero" caption="Karen Michell" />
 
         <Section title="Confirma tu asistencia">
           <p className="text-center text-muted-foreground">Por favor confirma antes del <strong className="text-foreground">7 de enero de 2027</strong>.</p>
