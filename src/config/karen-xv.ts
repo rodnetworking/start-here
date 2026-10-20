@@ -1,19 +1,14 @@
-// Configuración central de la invitación. Para cambiar la canción o las fotos,
-// reemplaza los archivos en public/assets/karen-xv/ y ajusta esta lista.
 // Configuración central de la invitación.
 // Las imágenes se sirven desde public/assets/karen-xv/.
 const BASE = "/assets/karen-xv";
 
 export const assets = {
-  aurora: `${BASE}/images/aurora.png`,
-  photos: [
-    `${BASE}/images/foto-01.jpg`,
-    `${BASE}/images/foto-02.jpg`,
-    `${BASE}/images/foto-03.jpg`,
-    `${BASE}/images/foto-04.jpg`,
-    `${BASE}/images/foto-05.jpg`,
-    `${BASE}/images/foto-06.jpg`,
-  ],
+  auroraFull: `${BASE}/ilustrations/aurora_completa_parada_negra_fondo-transparente.png`,
+  auroraHead: `${BASE}/ilustrations/aurora_cabeza_negra_fondo-transparente.png`,
+  // Copia del marco original con el óvalo interior vuelto transparente.
+  frame: `${BASE}/decorations/marco-floral-ovalado.png`,
+  share: `${BASE}/decorations/portada-compartir.jpg`,
+  photos: [1, 2, 3, 4, 5].map((n) => `${BASE}/images/foto-0${n}.jpeg`),
 };
 // 9 de enero de 2027, 6:00 p. m. hora de Guadalajara (UTC-6, sin horario de verano).
 export const EVENT_DATE = new Date("2027-01-09T18:00:00-06:00");
