@@ -10,23 +10,26 @@ import { Petals } from "@/components/xv/Decor";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Mis XV años · Karen Michell López Juárez" },
+      { title: "XV años de Karen Michell López Juárez | Rodnet" },
       {
         name: "description",
         content:
-          "Invitación a los XV años de Karen Michell López Juárez. Sábado 9 de enero de 2027, Zapopan, Jalisco.",
+          "Acompáñanos a celebrar los XV años de Karen Michell López Juárez. Una invitación especial para un día lleno de magia, recuerdos y momentos inolvidables.",
       },
       {
         property: "og:title",
-        content: "Mis XV años · Karen Michell López Juárez",
+        content: "XV años de Karen Michell López Juárez | Rodnet",
       },
       {
         property: "og:description",
         content:
-          "Un sueño de cuento de hadas está por comenzar. 9 de enero de 2027.",
+          "Acompáñanos a celebrar los XV años de Karen Michell López Juárez. Una invitación especial para un día lleno de magia, recuerdos y momentos inolvidables.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: "XV años de Karen Michell López Juárez | Rodnet" },
+      { name: "twitter:description", content: "Acompáñanos a celebrar los XV años de Karen Michell López Juárez. Una invitación especial para un día lleno de magia, recuerdos y momentos inolvidables." },
+      // og:image, twitter:image y og:url se añadirán con el dominio público real al publicar.
     ],
   }),
   component: Index,

@@ -98,15 +98,20 @@ export function Reveal({
   );
 }
 
-export function Aurora({ className = "" }: { className?: string }) {
+/** Ilustración real de Aurora, teñida en plata/rosa usando su silueta como máscara. */
+export function Aurora({ pose = "full", className = "" }: { pose?: "full" | "head"; className?: string }) {
+  const src = pose === "full" ? assets.auroraFull : assets.auroraHead;
+  const ratio = pose === "full" ? "1224 / 2048" : "438 / 578";
   return (
-    <img
-      src={assets.aurora}
-      alt="Princesa Aurora"
-      onError={(e) => {
-        e.currentTarget.style.display = "none";
+    <div
+      role="img"
+      aria-label="Ilustración de la princesa Aurora"
+      className={`aurora-tint ${className}`}
+      style={{
+        aspectRatio: ratio,
+        WebkitMaskImage: `url(${src})`,
+        maskImage: `url(${src})`,
       }}
-      className={`object-contain drop-shadow-[0_10px_25px_oklch(0.6_0.1_5/0.35)] ${className}`}
     />
   );
 }

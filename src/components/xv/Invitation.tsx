@@ -1,8 +1,8 @@
 import type { ReactNode } from "react";
 import { Church, Gift, MapPin, MessageCircle, Shirt, Sparkle, Wine } from "lucide-react";
-import { venues, whatsapp } from "@/config/karen-xv";
+import { assets, venues, whatsapp } from "@/config/karen-xv";
 import { Countdown } from "./Countdown";
-import { Gallery } from "./Gallery";
+import { PhotoFrame } from "./PhotoFrame";
 import { Aurora, Ornament, Reveal, Sparkles } from "./Decor";
 
 function Section({ title, children, icon }: { title: string; children: ReactNode; icon?: ReactNode }) {
@@ -18,7 +18,6 @@ function Section({ title, children, icon }: { title: string; children: ReactNode
   );
 }
 
-const btn = "inline-flex min-h-12 items-center justify-center gap-2 rounded-full px-6 text-sm font-medium tracking-wide transition-transform active:scale-[0.98]";
 
 export function Invitation() {
   return (
@@ -26,6 +25,7 @@ export function Invitation() {
       {/* Hero */}
       <section className="relative flex min-h-[92svh] flex-col items-center justify-center overflow-hidden px-5 py-16 text-center">
         <Sparkles />
+        <Aurora pose="full" className="animate-rise pointer-events-none mb-[-1.5rem] w-24 opacity-90 sm:w-28" />
         <div className="animate-rise relative rounded-[2rem] border-silver bg-paper/90 px-6 py-10 shadow-card sm:px-14">
           <p className="font-serif text-sm uppercase tracking-[0.4em] text-muted-foreground">Mis XV años</p>
           <h1 className="mt-4 font-script text-[clamp(3rem,15vw,6rem)] leading-[0.95] text-primary">Karen Michell</h1>
@@ -43,9 +43,11 @@ export function Invitation() {
           </blockquote>
           <div className="relative mx-auto">
             <div aria-hidden className="absolute inset-0 -z-10 rounded-full bg-blush blur-3xl" />
-            <Aurora className="w-44 sm:w-56" />
+            <Aurora pose="head" className="w-36 sm:w-48" />
           </div>
         </Reveal>
+
+        <PhotoFrame src={assets.photos[0]!} variant="rise" />
 
         <Section title="Con la bendición de">
           <div className="grid gap-8 text-center sm:grid-cols-2">
@@ -62,6 +64,8 @@ export function Invitation() {
           </div>
         </Section>
 
+        <PhotoFrame src={assets.photos[1]!} variant="side" />
+
         <Section title="Faltan">
           <Countdown />
         </Section>
@@ -75,17 +79,16 @@ export function Invitation() {
                 <p className="mt-1 text-lg font-medium text-primary">{v.time}</p>
                 <p className="mt-3 font-medium">{v.place}</p>
                 <p className="mt-1 text-sm text-muted-foreground">{v.address}</p>
-                <a href={v.map} target="_blank" rel="noopener noreferrer" className={`${btn} mt-5 border border-primary text-primary hover:bg-secondary`}>
-                  <MapPin className="size-4" /> Ver en Google Maps
+                <a href={v.map} target="_blank" rel="noopener noreferrer" className="btn-ornate mt-5">
+                  <MapPin className="size-4" /> {i === 0 ? "Ver la iglesia" : "Ver el salón"} en Maps
                 </a>
               </article>
             ))}
           </div>
         </Section>
 
-        <Section title="Galería">
-          <Gallery />
-        </Section>
+        <PhotoFrame src={assets.photos[2]!} variant="curtain" />
+        <PhotoFrame src={assets.photos[3]!} variant="grow" />
 
         <Section title="Código de vestimenta" icon={<Shirt className="size-7" />}>
           <div className="text-center">
@@ -103,11 +106,13 @@ export function Invitation() {
           </p>
         </Section>
 
+        <PhotoFrame src={assets.photos[4]!} variant="hero" caption="Karen Michell" />
+
         <Section title="Confirma tu asistencia">
           <p className="text-center text-muted-foreground">Por favor confirma antes del <strong className="text-foreground">7 de enero de 2027</strong>.</p>
           <div className="mt-6 flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
             {whatsapp.map((w) => (
-              <a key={w.number} href={w.href} target="_blank" rel="noopener noreferrer" className={`${btn} w-full bg-primary text-primary-foreground shadow-soft sm:w-auto`}>
+              <a key={w.number} href={w.href} target="_blank" rel="noopener noreferrer" className="btn-ornate btn-ornate-solid w-full sm:w-auto">
                 <MessageCircle className="size-4" /> Confirmar al {w.label}
               </a>
             ))}
