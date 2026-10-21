@@ -39,7 +39,7 @@ export function Invitation() {
         {/* Dedicatoria + Aurora */}
         <Reveal className="mx-auto grid max-w-4xl items-center gap-8 px-5 py-14 md:grid-cols-[1fr_auto]">
           <blockquote className="text-center font-serif text-xl italic leading-relaxed text-foreground sm:text-2xl md:text-left">
-            “Como la Bella Durmiente, desperté hoy a un sueño hecho realidad, donde cada estrella brilla para mí. Gracias por acompañarme en este comienzo de mi nueva historia. ¡Bienvenidos a mis XV años!”
+            “Igual que la Bella Durmiente, hoy desperté a un sueño hecho realidad donde cada estrella brilla solo para mí. Gracias por acompañarme en el inicio de mi nueva historia. ¡Bienvenidos a mis XV años!”
           </blockquote>
           <div className="relative mx-auto">
             <div aria-hidden className="absolute inset-0 -z-10 rounded-full bg-blush blur-3xl" />
@@ -94,8 +94,11 @@ export function Invitation() {
           <div className="text-center">
             <p className="font-serif text-2xl">Casual formal</p>
             <p className="mx-auto mt-4 max-w-md text-muted-foreground">
-              Con cariño te pedimos evitar los colores <strong className="text-foreground">rosa</strong>,{" "}
-              <strong className="text-foreground">morado</strong> y <strong className="text-foreground">plateado</strong>, reservados para la quinceañera.
+              Con cariño te pedimos evitar los colores{" "}
+              <strong className="text-foreground">rojo</strong>,{" "}
+              <strong className="text-foreground">rosa</strong>,{" "}
+              <strong className="text-foreground">morado</strong> y{" "}
+              <strong className="text-foreground">plateado</strong>, reservados para la quinceañera.
             </p>
           </div>
         </Section>
@@ -122,7 +125,7 @@ export function Invitation() {
         <Reveal className="mx-auto max-w-xl px-5 pb-10">
           <div className="rounded-2xl bg-secondary/70 p-5 text-center text-sm leading-relaxed text-secondary-foreground">
             <Sparkle className="mx-auto mb-2 size-4 text-primary" />
-            Les pedimos cuidar a sus niños y niñas durante los bailes, para que no crucen la pista corriendo, y tener precaución con la cristalería.
+            Los niños son muy importantes para nosotros. Agradecemos cuidar de los pequeños durante los bailes y tener precaución con la cristalería para evitar accidentes.
           </div>
         </Reveal>
 
