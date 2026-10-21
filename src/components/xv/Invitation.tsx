@@ -70,7 +70,7 @@ export function Invitation() {
           <Countdown />
         </Section>
 
-        <Section title="Dónde y cuándo">
+        <Section title="Evento">
           <div className="grid gap-5 sm:grid-cols-2">
             {venues.map((v, i) => (
               <article key={v.title} className="flex flex-col items-center rounded-2xl border-silver p-6 text-center shadow-soft">
